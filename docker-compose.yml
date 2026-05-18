@@ -1,0 +1,14 @@
+services:
+  pipeline:
+    build: .
+    volumes:
+      - ./data/raw:/data/raw
+      - ./data/staging:/data/staging
+      - ./data/curated:/data/curated
+      - pipeline_db_volume:/data
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: python -m src.main
+
+volumes:
+  pipeline_db_volume:
